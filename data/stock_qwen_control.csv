@@ -1,0 +1,11 @@
+row_id,source_row_sha256,selection_index,input_token_count,pair_replica_tokens_exact,pair_replica_logprobs_exact,singleton_pair_tokens_exact,singleton_pair_logprobs_exact,first_token_divergence_index,first_logprob_divergence_index,singleton_output_token_count,paired_output_token_count,max_abs_aligned_selected_token_logprob_difference
+r0040,3807af145d1b37a6528660b00d41eb537354017797ff382f91eb811573875f53,0,243,true,true,false,false,28,0,486,448,1.7026134737498069
+r0179,f566c3c321ae148f66023c65ce7c0ab32a4f61479bad9a104f01df90b01c06eb,1,166,true,true,true,false,,0,145,145,0.12884831428527832
+r0000,5d032b4ff716709197a812a99b057cad081e4a54872feb195155ba9441eae014,2,352,true,true,true,true,,,510,510,0.0
+r0052,d748e60e08c56b5508b877698bae9165aae654ae8460e537c0b5c5aa4d065ba7,3,120,true,true,true,true,,,292,292,0.0
+r0092,18200f3a67fe75fda79ead5b42d6c54d9c5e264cec61b61072b4185d577fd390,4,332,true,true,true,true,,,512,512,0.0
+r0096,71c3db9609f1be0ae7cc9ee182faa3af2a1405f8d52810f8d3fda6ac01b93018,5,153,true,true,false,false,13,0,512,512,1.3632981273694895
+r0058,81a2c0336ef83e271a05808fd107ba08bf21a93a007560dc06937aaab98a9e0d,6,529,true,true,true,true,,,512,512,0.0
+r0007,9ee86c157400ed546a40521eccd343ec3dc572c88f01f7ef9d1aa9bd1f652013,7,132,true,true,false,false,206,0,445,424,1.7720536589622498
+r0087,16ca1c2562c0a320bf7e1047e58e00538fd8fe39cc3896ce8f8f7b7867145444,8,175,true,true,true,true,,,233,233,0.0
+r0178,1feef9c7462227692e9c30671664f428d9b27bd196d2247da6077a3769004555,9,229,true,true,true,true,,,512,512,0.0

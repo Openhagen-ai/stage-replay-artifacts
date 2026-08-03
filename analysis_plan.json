@@ -1,0 +1,86 @@
+{
+  "fixed_prefix_matrix": {
+    "arms": [
+      "token-by-token incremental",
+      "incremental replica",
+      "one-shot prefill",
+      "prefill replica"
+    ],
+    "precisions": [
+      "bf16",
+      "fp32"
+    ],
+    "primary_endpoints": [
+      "suffix disagreement",
+      "answer disagreement",
+      "correctness-label disagreement",
+      "boundary cache drift"
+    ],
+    "same_discrete_prefixes": true
+  },
+  "matched_matrix": {
+    "arms": [
+      "retained live",
+      "live replica",
+      "one-shot prefill",
+      "prefill replica"
+    ],
+    "integrity": "both replica pairs, functional state, storage isolation, and duplicate rows must pass on all 200 items",
+    "precisions": [
+      "bf16",
+      "fp32"
+    ],
+    "primary_comparison": "one-shot prefill minus retained live"
+  },
+  "population": {
+    "dataset": "GPQA Main",
+    "dataset_file_sha256": "6f65f1cfc06c718bc6cf0f5f00703183bb640bf36695a492030f365c66dfa33b",
+    "item_order_sha256": "3c010ab7246c6464124d83a466333c1894d0e744939096d789cc95a0ac86c942",
+    "rows": 200,
+    "selection": "all rows in frozen source order; no exclusions"
+  },
+  "private_plan_commitments": {
+    "fixed_analysis_plan_sha256": "28b2a248bf9865f86ac295d321f8bd0fb9fcc47dbb611c610c64b4c3741485fa",
+    "later_transplant_design_sha256": "3d4063195d94e184ea6b3aee97ee75bf8be4937a7417e33a119fdb117d7d487d",
+    "matched_analysis_plan_sha256": "9fabf52073fc137c36941ffbbd03077d9dec55add7d30019162a2d94a0ea0da7",
+    "primary_transplant_design_sha256": "ea222911396a26c6300819fd27c7531bad1b8fbe5c94e786a019c8e40997ae4a"
+  },
+  "prospective_bridge": {
+    "endpoints": [
+      "cache identity",
+      "boundary-logit identity",
+      "suffix identity"
+    ],
+    "rows": 12,
+    "selection": "outcome-blind length-spread order statistics"
+  },
+  "schema": "stage-replay-public-analysis-plan-v1",
+  "status": "frozen-design commitments copied from pre-outcome plans",
+  "uncertainty": {
+    "accuracy": "20,000 paired-problem percentile bootstrap replicates",
+    "binary_rates": "Wilson 95% intervals",
+    "bootstrap_seed": 20260728,
+    "bootstrap_streams": {
+      "accuracy_difference_of_differences": 30,
+      "cross_answer": 21,
+      "cross_correctness": 22,
+      "cross_logits": 23,
+      "cross_suffix": 20,
+      "fixed_bf16": 100,
+      "fixed_fp32": 101,
+      "matched_bf16": 0,
+      "matched_fp32": 1
+    },
+    "directional_side_read": "exact two-sided McNemar test",
+    "matrix_wilson_z": 1.96,
+    "transplant_wilson_z": 1.959963984540054
+  },
+  "whole_cache_transplant": {
+    "intervention": "bidirectional replacement of all 48 key/value layer pairs",
+    "later_rows": 48,
+    "later_selection": "outcome-blind length-and-identifier spread",
+    "primary_endpoint": "exact donor-trajectory recovery",
+    "primary_rows": 32,
+    "primary_selection": "24 prior-divergent and 8 prior-exact length-spread rows"
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "private_source_row_commitment": "SHA-256 of canonical JSON with ensure_ascii=True, sorted keys, and compact separators",
+  "release_claim_boundary": "The derivatives support statistical verification plus provenance commitments, not content-level rescoring or end-to-end regeneration.",
+  "sanitizer_sha256": "0b0a70d318268657411e42a125002a1d387130eef28d60d9e401dedd955fb670",
+  "schema": "stage-replay-redaction-receipt-v1",
+  "sources": [
+    {
+      "bytes": 26275998,
+      "label": "matched_bf16",
+      "public_derivatives": [
+        "data/matched_live_prefill.csv"
+      ],
+      "sha256": "4935b951e1698fc6216f8c494c4e7f4478c981362f53f7494337e02ed981d2af"
+    },
+    {
+      "bytes": 26518205,
+      "label": "matched_fp32",
+      "public_derivatives": [
+        "data/matched_live_prefill.csv"
+      ],
+      "sha256": "91cc7981925b6ac0fce95a320a806b468a3662faa73a0fd03435542225a7ecef"
+    },
+    {
+      "bytes": 39426085,
+      "label": "fixed_bf16",
+      "public_derivatives": [
+        "data/fixed_prefix_2x2.csv"
+      ],
+      "sha256": "ff2f0fb468aaa720b83d8d61e7c9ee2fae006cfca9d01255fe9cf53ebba46098"
+    },
+    {
+      "bytes": 40002670,
+      "label": "fixed_fp32",
+      "public_derivatives": [
+        "data/fixed_prefix_2x2.csv"
+      ],
+      "sha256": "e8a58e9b73a167e98827156d1ad88c92582a711de9d2c86ac62abf6173a59b4b"
+    },
+    {
+      "bytes": 1762477,
+      "label": "prospective_bridge",
+      "public_derivatives": [
+        "data/live_teacher_bridge.csv"
+      ],
+      "sha256": "1ff8a5e9a827ca2f73f57a6af0ef3cfb03a38d74ba18d8aec318f981831f3f4c"
+    },
+    {
+      "bytes": 2701,
+      "label": "historical_bridge_report",
+      "public_derivatives": [
+        "data/historical_bridge_audit.csv"
+      ],
+      "sha256": "d48c5eb7b8cf24cf79370807edfcc8b8d021d45b25aca69bb8c6cd35fb0bec8e"
+    },
+    {
+      "bytes": 4020147,
+      "label": "transplant_primary",
+      "public_derivatives": [
+        "data/kv_transplant_primary.csv"
+      ],
+      "sha256": "5ba40ed9b647768b2cd7f9c1d35499020b8628246035936f68b3e56a1db9c63e"
+    },
+    {
+      "bytes": 4342281,
+      "label": "transplant_later",
+      "public_derivatives": [
+        "data/kv_transplant_later.csv"
+      ],
+      "sha256": "da65445874f901bd522235f3f7de4152d4e834be005e58dbfcfc43e15dbe9813"
+    },
+    {
+      "bytes": 450951,
+      "label": "stock_control",
+      "public_derivatives": [
+        "data/stock_qwen_control.csv"
+      ],
+      "sha256": "09dab8ce378ae5c5d8147a6b199cdcd6cf7e8c4ce17bf6bfe626ce0809ffcc67"
+    }
+  ],
+  "transformations": [
+    "real item identifiers replaced with frozen-order opaque row identifiers",
+    "token arrays replaced with counts and SHA-256 commitments",
+    "textual inputs, generated reasoning, extracted answers, and gold answers removed",
+    "checkpoint locations replaced with C0, C1, and S0 aliases",
+    "runtime paths, host identifiers, logs, and command lines removed",
+    "only the six claim-scoped full-cache transplant arms exported",
+    "mutable post-decode bridge cache length renamed; boundary length derived from pre-decode tensor metadata"
+  ]
+}

@@ -1,0 +1,14 @@
+cff-version: 1.2.0
+message: "If you use these verification artifacts, cite the paper and this release."
+title: "Claim-verification artifacts for Stage-Replay Divergence Follows the KV Cache: Fixed-Prefix Precision Controls and Bidirectional Cache Transplantation"
+type: dataset
+version: 1.0.0
+date-released: 2026-08-03
+authors:
+  - family-names: Lorup
+    given-names: Alexander Boesgaard
+identifiers:
+  - type: other
+    value: "arXiv:2607.28495v1"
+    description: "Paper version bound by this artifact release"
+license: CC-BY-4.0

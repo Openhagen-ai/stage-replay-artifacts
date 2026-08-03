@@ -1,0 +1,300 @@
+{
+  "arxiv_binding": {
+    "identifier": "2607.28495",
+    "manuscript_tex_archive_member": "stage_replay_repeatable_precision_sensitive.tex",
+    "manuscript_tex_sha256": "91650cc5fb9a082e548bc652d6532dea1663cc45740433e0c2803a423214358d",
+    "official_files_retrieved_utc_date": "2026-08-03",
+    "official_pdf_sha256": "3231f91ee371721686ecdee070b4a41714fe75a9647cfae5386d1e2496571bf1",
+    "official_source_archive_sha256": "9fee5631d94a7f8f29d688283bb8a38fc1a6f4b8e185c8721247e28596e7e52e",
+    "submitted_utc": "2026-07-30T16:41:40Z",
+    "title": "Stage-Replay Divergence Follows the KV Cache: Fixed-Prefix Precision Controls and Bidirectional Cache Transplantation",
+    "url": "https://arxiv.org/abs/2607.28495v1",
+    "version": "v1"
+  },
+  "cache_contract": {
+    "clone": "deep copy with exact-value and storage-disjointness gates",
+    "container": "Transformers DynamicCache",
+    "key_value_tensors_per_layer": 2,
+    "layers": 48,
+    "tensor_shape": "[2, 8, prefix_length, 128]"
+  },
+  "checkpoints": {
+    "C0": {
+      "access": "private; digest identity only",
+      "architecture_family": "Qwen2ForCausalLM",
+      "config_sha256": "dec4e645b4f82cad0a0d7951aa74b4df94333696c19ce5530ec5b8eb7ce1b083",
+      "decoder_layers": 48,
+      "model_weights_sha256": "c63e1ba51169715a558c054478f2bacb991891adb7e75c18512a585af916dfcf",
+      "public_backbone": "Qwen/Qwen2.5-14B-Instruct",
+      "role_component_sha256": "c8d03cb0a50d7ffaca51d54ef7073e0a63c08911ce0d079ba9e4b05f3dfa24e1",
+      "tokenizer_sha256": "305e7c9ffdfaacde7757cd8b251118a82ffb8809b1be677e5db8289ad3a680bf"
+    },
+    "C1": {
+      "access": "private; digest identity only",
+      "architecture_family": "Qwen2ForCausalLM",
+      "config_sha256": "dec4e645b4f82cad0a0d7951aa74b4df94333696c19ce5530ec5b8eb7ce1b083",
+      "decoder_layers": 48,
+      "model_weights_sha256": "78b7eb8eebdc9db7d4adf996cf19febe7cf46ebd8483e5f02ac33eb3272bae6d",
+      "public_backbone": "Qwen/Qwen2.5-14B-Instruct",
+      "role_component_sha256": "c257d2881a2ec1c0aa9db36c03155ca9be704e5ae1df28c47e4cc6888b6913f4",
+      "tokenizer_sha256": "366610f4739162cf51637d1291194beb535eab53a861fd3fca0900e254022d29"
+    },
+    "S0": {
+      "access": "public upstream checkpoint",
+      "architecture_family": "Qwen2ForCausalLM",
+      "config_sha256": "0f2085dbbe2ee251bd6a6a0797d84a6ce34436044d629aa3cba793b43d311a9e",
+      "decoder_layers": 48,
+      "file_inventory_sha256": "18bf4b154d1413985f2f9bec74b18308f90ab0d047989271d2394cb2d678fab7",
+      "public_backbone": "Qwen/Qwen2.5-14B-Instruct",
+      "tokenizer_sha256": "c0382117ea329cdf097041132f6d735924b697924d6f6fc3945713e96ce87539"
+    }
+  },
+  "created_utc": "2026-08-03T10:01:49Z",
+  "decode_contract": {
+    "answer_content_token_cap": 64,
+    "batch_membership": "two duplicate copies of one item",
+    "branch_content_token_cap": 768,
+    "certified_batch_invariant_kernel": false,
+    "greedy": true,
+    "merge_content_token_cap": 512,
+    "physical_batch_size": 2,
+    "temperature": 0.0,
+    "top_k": 0,
+    "top_p": 1.0
+  },
+  "digest_methods": {
+    "adapted_checkpoint_fields": {
+      "config_sha256": "exact bytes of config.json",
+      "model_weights_sha256": "exact bytes of model.safetensors",
+      "role_component_sha256": "exact bytes of role_embedding.pt",
+      "tokenizer_sha256": "exact bytes of tokenizer.json"
+    },
+    "algorithm": "SHA-256, lowercase hexadecimal",
+    "arxiv_pdf_sha256": "exact official PDF response bytes",
+    "arxiv_source_archive_sha256": "exact official source-archive response bytes",
+    "dataset_file_sha256": "exact bytes of the frozen holdout JSON file",
+    "exact_file_bytes": "Stream the complete file bytes without newline or metadata normalization.",
+    "frozen_item_order_sha256": "SHA-256 of the ordered real problem identifiers encoded as UTF-8, each followed by one newline; the identifiers themselves are withheld",
+    "manuscript_tex_sha256": "exact bytes of arXiv source member stage_replay_repeatable_precision_sensitive.tex",
+    "private_source_row_sha256": "SHA-256 of UTF-8 canonical JSON for the complete private source-row object (ensure_ascii=true, sorted keys, compact separators)",
+    "sequence_sha256": "SHA-256 of UTF-8 canonical JSON for the exact integer-token list (ensure_ascii=true, sorted keys, compact separators)",
+    "stock_checkpoint_file_inventory_sha256": "SHA-256 of UTF-8 canonical JSON (ensure_ascii=true, sorted keys, compact separators) mapping the five required metadata filenames and every sorted model-*.safetensors filename to its exact-file-byte SHA-256"
+  },
+  "disclosure_boundary": {
+    "excluded": [
+      "adapted model weights",
+      "benchmark text and reversible token arrays",
+      "generated reasoning text",
+      "training data, training lineage, and training code",
+      "full cache tensors and full logits",
+      "private generation runners and unrelated experiments",
+      "internal filesystem and orchestration identifiers"
+    ],
+    "included": [
+      "opaque row-level outcome and integrity ledgers",
+      "sequence lengths and SHA-256 commitments",
+      "per-item aggregate absolute and relative cache-drift summaries",
+      "frozen analysis and uncertainty contract",
+      "standalone claim recomputation code"
+    ]
+  },
+  "file_inventory": [
+    {
+      "bytes": 533,
+      "path": "CITATION.cff",
+      "sha256": "de41215ecaf45ff9960dfc8f29b081080d66f68bb5c1111e15211c0e8ea4feef"
+    },
+    {
+      "bytes": 2342,
+      "path": "DATA_DICTIONARY.md",
+      "sha256": "1d636760cee1d8f23e889ca8ed6185e75d0276c29a7d1602860a2cdeed9eedbe"
+    },
+    {
+      "bytes": 1465,
+      "path": "LICENSE",
+      "sha256": "49d7244be97568f14ed58bb65e9a66192da5dc87e6f844f70718c71629817a41"
+    },
+    {
+      "bytes": 4613,
+      "path": "README.md",
+      "sha256": "38616aa16728f58fd0a63f36323b33c095b0747f12827259b8f658fdf30ddb34"
+    },
+    {
+      "bytes": 32891,
+      "path": "analysis/recompute.py",
+      "sha256": "40309d403f448c775db099b19a27d9349a08e51942b215bac8ab4f067218d4b5"
+    },
+    {
+      "bytes": 2896,
+      "path": "analysis_plan.json",
+      "sha256": "0e29338c4861d27f0fa83db9cb30d766a7df0d5546ec83d0aaf0fca162cad8c8"
+    },
+    {
+      "bytes": 262704,
+      "path": "data/fixed_prefix_2x2.csv",
+      "sha256": "3a69cbf120fb62f7211e95c96e356dc08f1f00d912fcb3b4e765d7e83d631274"
+    },
+    {
+      "bytes": 42536,
+      "path": "data/historical_bridge_audit.csv",
+      "sha256": "c1f94216291db383532d041d22b2e566f59802c408da0669f834925fc8057750"
+    },
+    {
+      "bytes": 25548,
+      "path": "data/kv_transplant_later.csv",
+      "sha256": "c903c80789e11117bf2f33ed96071e5fa2e0e9cdfee060d23e794a64122f3125"
+    },
+    {
+      "bytes": 17463,
+      "path": "data/kv_transplant_primary.csv",
+      "sha256": "04526c569152d392e6f74a6d20d67691f238a9d8135ce36c18e48dfce759ccd7"
+    },
+    {
+      "bytes": 5589,
+      "path": "data/live_teacher_bridge.csv",
+      "sha256": "7067940a65cf3a9f35a1d413b2c6d3231fcb36e999d75bc92d727aad6b7d679e"
+    },
+    {
+      "bytes": 231490,
+      "path": "data/matched_live_prefill.csv",
+      "sha256": "c9f0f592666584c6df262ebba3f4f29b358ca715853f81b648c302e43f66b41f"
+    },
+    {
+      "bytes": 1536,
+      "path": "data/stock_qwen_control.csv",
+      "sha256": "17c2c963778109925a98fceaaf9d9437bc4196e6c4c0bd1eb2319843efd7cb93"
+    },
+    {
+      "bytes": 13184,
+      "path": "paper_claims.json",
+      "sha256": "278c2a83230137b2e49c1ee294a9364bda6573f0c30f32753655f6234380669a"
+    },
+    {
+      "bytes": 3114,
+      "path": "redaction_receipt.json",
+      "sha256": "2efbff7a752a8202d2583e8b2de813f00733e5ead253f442d0ca8b7694a7d65d"
+    },
+    {
+      "bytes": 13,
+      "path": "requirements.txt",
+      "sha256": "d9d44ae46cc2088e11dbf0fc6b28c1aefb8b77a1377c7543fa838f6cb48f25d8"
+    }
+  ],
+  "hosting_binding": {
+    "archive_checksum_location": "accompanying external release receipt",
+    "immutable_tag": null,
+    "repository_commit": null,
+    "version_doi": null
+  },
+  "numeric_contract": {
+    "bf16": {
+      "cudnn_tf32": true,
+      "dtype": "torch.bfloat16",
+      "matmul_tf32": false
+    },
+    "fp32": {
+      "cudnn_tf32": false,
+      "dtype": "torch.float32",
+      "float32_matmul_precision": "highest",
+      "matmul_tf32": false
+    }
+  },
+  "population": {
+    "dataset": "GPQA Main",
+    "frozen_dataset_file_sha256": "6f65f1cfc06c718bc6cf0f5f00703183bb640bf36695a492030f365c66dfa33b",
+    "frozen_item_order_sha256": "3c010ab7246c6464124d83a466333c1894d0e744939096d789cc95a0ac86c942",
+    "public_row_identifiers": "r0000 through r0199",
+    "rows": 200,
+    "selection": "all matching rows in frozen source order; no exclusions"
+  },
+  "release_id": "stage-replay-arxiv-2607.28495v1-verification-v1.0.0",
+  "release_kind": "claim verification; not end-to-end model reproduction",
+  "release_version": "1.0.0",
+  "runtime": {
+    "attention_backend": "Hugging Face SDPA",
+    "compile_enabled": false,
+    "compute_capability": "10.0",
+    "cuda_runtime": "12.8",
+    "cudnn": "9.10.2",
+    "deterministic_algorithms": false,
+    "eager_inference": true,
+    "gpu": "NVIDIA B200",
+    "nvidia_driver": "590.48.01",
+    "python": "3.12.13",
+    "pytorch": "2.10.0+cu128",
+    "tensor_parallel_size": 1,
+    "transformers": "5.3.0"
+  },
+  "schema": "stage-replay-claim-verification-release-v1",
+  "scoring": {
+    "content_level_rescoring_available": false,
+    "method": "deterministic answer matcher",
+    "released_values": "per-row correctness labels and exact answer-equality indicators",
+    "source_sha256": "753a7d237fdc5b8b20e3e93219cc052296fc9b699c7cfa095726b88ba220b264"
+  },
+  "source_commitments": [
+    {
+      "bytes": 26275998,
+      "label": "matched_bf16",
+      "rows": 200,
+      "sha256": "4935b951e1698fc6216f8c494c4e7f4478c981362f53f7494337e02ed981d2af"
+    },
+    {
+      "bytes": 26518205,
+      "label": "matched_fp32",
+      "rows": 200,
+      "sha256": "91cc7981925b6ac0fce95a320a806b468a3662faa73a0fd03435542225a7ecef"
+    },
+    {
+      "bytes": 39426085,
+      "label": "fixed_bf16",
+      "rows": 200,
+      "sha256": "ff2f0fb468aaa720b83d8d61e7c9ee2fae006cfca9d01255fe9cf53ebba46098"
+    },
+    {
+      "bytes": 40002670,
+      "label": "fixed_fp32",
+      "rows": 200,
+      "sha256": "e8a58e9b73a167e98827156d1ad88c92582a711de9d2c86ac62abf6173a59b4b"
+    },
+    {
+      "bytes": 1762477,
+      "label": "prospective_bridge",
+      "rows": 12,
+      "sha256": "1ff8a5e9a827ca2f73f57a6af0ef3cfb03a38d74ba18d8aec318f981831f3f4c"
+    },
+    {
+      "bytes": 2701,
+      "label": "historical_bridge_report",
+      "sha256": "d48c5eb7b8cf24cf79370807edfcc8b8d021d45b25aca69bb8c6cd35fb0bec8e"
+    },
+    {
+      "bytes": 4020147,
+      "label": "transplant_primary",
+      "rows": 32,
+      "sha256": "5ba40ed9b647768b2cd7f9c1d35499020b8628246035936f68b3e56a1db9c63e"
+    },
+    {
+      "bytes": 4342281,
+      "label": "transplant_later",
+      "rows": 48,
+      "sha256": "da65445874f901bd522235f3f7de4152d4e834be005e58dbfcfc43e15dbe9813"
+    },
+    {
+      "bytes": 450951,
+      "label": "stock_control",
+      "rows": 10,
+      "sha256": "09dab8ce378ae5c5d8147a6b199cdcd6cf7e8c4ce17bf6bfe626ce0809ffcc67"
+    },
+    {
+      "bytes": 13549,
+      "label": "matched_analysis_report",
+      "sha256": "30f71401d350c1cb09753f65eeb6bdfe675eec7a29910443e0a852700dab7ea1"
+    },
+    {
+      "bytes": 96092,
+      "label": "fixed_analysis_report",
+      "sha256": "57920d12ecea9ea9ba89991d7a4a7aec0bb05928d38f3a3a4a15b43295b5ff3c"
+    }
+  ]
+}
