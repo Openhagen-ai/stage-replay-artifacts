@@ -1,18 +1,41 @@
-# Stage-replay arXiv-v1 claim-verification bundle
+# Stage-Replay Artifacts
 
-This archive is the claim-scoped evidence release for **Stage-Replay Divergence Follows the KV Cache: Fixed-Prefix Precision Controls and Bidirectional Cache Transplantation**,
-[arXiv:2607.28495v1](https://arxiv.org/abs/2607.28495v1).
+Claim-verification artifacts for **Stage-Replay Divergence Follows the KV
+Cache: Fixed-Prefix Precision Controls and Bidirectional Cache
+Transplantation**.
 
-It supports independent recomputation of the central reported counts, Wilson
-intervals, paired bootstrap intervals, McNemar tests, drift medians, bridge
-counts, and bidirectional transplantation outcomes enumerated in
-`paper_claims.json`.  It is not an end-to-end model reproduction package: the
-two adapted checkpoints are identified by cryptographic digests but are not
-distributed.
+- **Paper:** [arXiv:2607.28495v1](https://arxiv.org/abs/2607.28495v1)
+- **Artifact release:** `v1.0.0`
+- **Citation metadata:** [`CITATION.cff`](CITATION.cff)
+- **Field definitions:** [`DATA_DICTIONARY.md`](DATA_DICTIONARY.md)
 
-## Verify
+> [!IMPORTANT]
+> This is a claim-verification release, not an end-to-end model-reproduction
+> package. It supports independent recomputation of the paper's reported
+> statistics and integrity checks. The two adapted checkpoints are identified
+> by cryptographic digests but are not distributed.
 
-Use Python 3.12 and the pinned NumPy version:
+## Verified headline results
+
+The bundled analyzer recomputes the following endpoints from the public
+ledgers:
+
+| Experiment | Recomputed result |
+|---|---|
+| Fixed-prefix BF16 crossing | 166/200 suffixes, 49/200 answers, and 20/200 correctness labels differ; both construction-specific replica pairs are exact on 200/200 rows |
+| Fixed-prefix FP32 crossing | 0/200 suffix, answer, or correctness-label disagreements on the tested prefixes; the 95% Wilson upper bound is 1.9% |
+| Prospective live/incremental bridge | Cache tensors across all 48 layers, boundary logits, and decoded suffixes are exact on 12/12 rows |
+| Whole-cache transplantation | Bidirectional donor recovery is 24/24 on the primary panel and 43/43 on the outcome-blind later-checkpoint panel; naturally exact controls produce no new trajectory on 0/8 and 0/5 rows |
+
+These are claim-level checks over the released evidence, not an independent
+regeneration of model trajectories.
+
+## Quick verification
+
+Use Python 3.12 and the pinned dependency in
+[`requirements.txt`](requirements.txt). Run the verifier from a **clean GitHub
+Download ZIP or release-archive extraction**, not from a Git checkout:
+fail-closed verification rejects unlisted files, including `.git` metadata.
 
 ```bash
 python3 -m venv ../stage-replay-release-venv
@@ -20,73 +43,111 @@ python3 -m venv ../stage-replay-release-venv
 ../stage-replay-release-venv/bin/python analysis/recompute.py --check
 ```
 
-Keep the virtual environment outside this directory: the verifier deliberately
-rejects files that are not listed in `SHA256SUMS`.
+A successful run independently recomputes the frozen claims in
+[`paper_claims.json`](paper_claims.json), including central counts, Wilson
+intervals, paired bootstrap intervals, exact McNemar tests, cache-drift
+medians, bridge results, and bidirectional transplantation outcomes.
 
-The command fails closed on an unlisted file, checksum mismatch, schema drift,
-missing row, failed integrity gate, changed row order, or disagreement with any
-frozen arXiv-v1 claim in `paper_claims.json`.
+The check fails on an unlisted or modified file, checksum mismatch, schema
+drift, missing row, changed row order, failed integrity gate, or disagreement
+with a frozen claim.
 
-## Included
+## Evidence included
 
-- redacted environment, numerical, decode, cache, checkpoint-digest, and
-  population contracts;
-- 400 row-level retained-live/prefill observations (200 per precision);
-- 400 row-level fixed-prefix observations with per-item aggregate cache-drift
-  summaries;
-- the 12-row prospective live/incremental bridge;
-- a 200-row historical trajectory and numerical-fingerprint audit;
-- six-arm, full-cache-only transplantation ledgers for the 32-row primary panel
-  and 48-row outcome-blind later panel;
-- the ten-row public-stock-model batch-composition diagnostic;
-- a standalone analyzer and frozen expected claims.
+| Component | Public evidence |
+|---|---|
+| Retained-live vs. fresh-prefill comparison | 400 row-level observations: 200 per precision |
+| Fixed-prefix precision crossing | 400 row-level observations with aggregate per-item cache-drift summaries |
+| Live/incremental bridge | 12 prospective rows plus a 200-row historical trajectory and numerical-fingerprint audit |
+| Full-cache transplantation | Six-arm ledgers for the 32-row primary panel and 48-row outcome-blind later-checkpoint panel |
+| Public-stock diagnostic | Ten-row Qwen2.5-14B-Instruct batch-composition control |
+| Statistical contract | Frozen analysis plan, expected claims, and standalone recomputation code |
 
-Rows use opaque identifiers `r0000` through `r0199` in the paper's frozen
-GPQA Main order.  Sequence contents are represented by their token counts and
-SHA-256 commitments.  Source-row hashes record private audit commitments; they
-can be checked against the private ledgers and sanitizer but are not
-independently invertible or verifiable from this public package alone.
+### Repository map
 
-## Explicit correction to the v1 release description
+- [`analysis/recompute.py`](analysis/recompute.py) — standalone verifier and
+  claim recomputation;
+- [`analysis_plan.json`](analysis_plan.json) — frozen analysis and uncertainty
+  contract;
+- [`paper_claims.json`](paper_claims.json) — machine-readable claims bound to
+  arXiv v1;
+- [`data/`](data/) — sanitized row-level evidence tables;
+- [`release_manifest.json`](release_manifest.json) — environment,
+  checkpoint-digest, numerical, decode, cache, population, and arXiv bindings;
+- [`redaction_receipt.json`](redaction_receipt.json) — auditable record of the
+  public transformation;
+- [`SHA256SUMS`](SHA256SUMS) — file-level integrity manifest.
 
-Section 3.9 of arXiv v1 says that the frozen problem-ID order, exact
-boundary-prefix and suffix token IDs, and primary generation harnesses would
-be released.  The real problem-ID mapping, reversible token arrays, and
-generation runners are intentionally not present here.  With the public
-tokenizer, those token arrays reconstruct benchmark questions, formatting,
-and complete generated reasoning.  The private generation runners also
-contain checkpoint-coupled code unrelated to the claims in this paper.  This
-bundle instead releases opaque frozen-order row IDs, sequence commitments,
-row-level outcome labels, numerical summaries, source-artifact digests,
-private-row audit commitments, and the complete statistical analyzer.  The
-narrower boundary should be stated in the next arXiv version.
+## Disclosure boundary
 
-Consequently, this archive supports arithmetic and statistical verification
-plus provenance commitments, not independent regeneration or content-level
-rescoring.  Exact reruns require access to digest-matching adapted checkpoints
-and the private execution layer.
+Rows use opaque identifiers `r0000` through `r0199` in the paper's frozen GPQA
+Main order. Exact token sequences are represented by token counts and SHA-256
+commitments. Source-row hashes commit to the corresponding private records;
+they are not independently invertible or verifiable from this public package
+alone.
 
-## Important bridge-field clarification
+| Included | Not included |
+|---|---|
+| Opaque row-level outcomes and integrity fields | Benchmark text, prompts, generated reasoning, or reversible token arrays |
+| Sequence lengths and SHA-256 commitments | Real problem-ID mapping |
+| Aggregate absolute and relative cache-drift summaries | Full cache tensors or logits |
+| Redacted execution and checkpoint-digest contracts | Adapted model weights |
+| Frozen analysis plan and complete statistical analyzer | Training data, lineage, code, or private generation runners |
 
-In the private prospective-bridge ledger, one serialized cache-length field was
-captured after suffix decoding had extended the mutable cache.  The public
-ledger names that value `post_decode_cache_sequence_len`.  Its
-`boundary_cache_sequence_len` is derived from the pre-decode comparison tensor
-metadata and equals the fixed-prefix length.  This transformation is recorded
-in `redaction_receipt.json`; it does not change the 12/12 tensor-identity result.
+The release therefore supports arithmetic and statistical verification plus
+provenance commitments. It does **not** support content-level rescoring or
+end-to-end regeneration. Exact reruns require digest-matching adapted
+checkpoints and the private execution layer.
 
-## Binding
+## Relationship to Section 3.9 of arXiv v1
 
-`release_manifest.json` binds this package to the exact official arXiv-v1 PDF,
-source archive, and manuscript TeX hashes and states each digest method.
-`SHA256SUMS` binds every other file inside the archive.  The accompanying
-external checksum and receipt bind the complete archive `stage-replay-arxiv-2607.28495v1-verification-v1.0.0.tar.gz`
-itself.  A repository commit, immutable tag, and version DOI should be recorded
-on the hosting release page rather than fabricated inside this pre-publication
-archive.
+Section 3.9 of arXiv v1 described a broader prospective release containing the
+frozen problem-ID order, exact boundary-prefix and suffix token IDs, and
+primary generation harnesses. This public release instead uses opaque
+frozen-order row IDs, sequence commitments, row-level outcome labels,
+numerical summaries, source-artifact digests, private-row audit commitments,
+and the complete analyzer.
+
+The narrower boundary avoids distributing benchmark-reconstructing token
+arrays and checkpoint-coupled private implementation unrelated to the paper's
+reported claims. The replacement manuscript corrects the release description
+accordingly.
+
+<details>
+<summary><strong>Bridge cache-length field clarification</strong></summary>
+
+In the private prospective-bridge ledger, one serialized cache-length field
+was captured after suffix decoding had extended the mutable cache. The public
+ledger names this value `post_decode_cache_sequence_len`. Its
+`boundary_cache_sequence_len` is derived from the pre-decode comparison-tensor
+metadata and equals the fixed-prefix length.
+
+This transformation is recorded in
+[`redaction_receipt.json`](redaction_receipt.json) and does not affect the
+reported 12/12 tensor-identity result.
+
+</details>
+
+## Integrity and version binding
+
+[`release_manifest.json`](release_manifest.json) records the exact SHA-256
+hashes of the official arXiv-v1 PDF, source archive, and manuscript TeX,
+together with every digest method. [`SHA256SUMS`](SHA256SUMS) binds the files
+within this snapshot. For an immutable hosting-level citation, use the exact
+repository commit or release tag together with [`CITATION.cff`](CITATION.cff).
+
+## Citation
+
+Please cite both the [paper](https://arxiv.org/abs/2607.28495v1) and this
+artifact release. GitHub exposes the repository citation from
+[`CITATION.cff`](CITATION.cff).
 
 ## License
 
-The analysis code is MIT-licensed.  The derived evidence tables and release
-documentation are licensed under CC BY 4.0.  No benchmark text, model weights,
-training data, or training lineage is included.
+Code under [`analysis/`](analysis/) is licensed under the MIT License. Derived
+evidence tables and release documentation are licensed under
+[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). See
+[`LICENSE`](LICENSE) for details.
+
+No benchmark text, model weights, training data, or training lineage is
+included.
